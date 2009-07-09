@@ -95,9 +95,10 @@ $(function($) {
           "Double click elements you wish to change. Then press the 'save' "+
           "button to make your changes permanent. --->"
         );
+        $("input[name='file']").val("hello world");
         $("input[type='submit']", tb).val("save");
         $("a", tb).attr("href", discard);
-        return false;
+        return true;
       }
     };
   })(false);
