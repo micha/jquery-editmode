@@ -87,6 +87,10 @@ $(function($) {
     return function(event) {
       if ( (mode = !mode) ) {
         alert("one");
+        $(".message", tb).text(
+          "Double click elements you wish to change. Then press the 'save' "+
+          "button to make your changes permanent."
+        );
         $("input[type='submit']", tb).val("save");
         return false;
       } else {
