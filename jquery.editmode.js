@@ -95,6 +95,10 @@ $(function($) {
         return false;
       } else {
         alert("two");
+        $(".message", tb).text(
+          "Press the 'edit' button to start editing this page. --->"
+        );
+        $("input[type='submit']", tb).val("edit");
         return false;
       }
     }
