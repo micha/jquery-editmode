@@ -7,9 +7,9 @@
       if (!arguments.length)
         return enabledVal;
       else if (val)
-        $("#editmode input[type='submit']").show();
+        $("#editmode input[type='submit']").attr("disabled", false);
       else
-        $("#editmode input[type='submit']").hide();
+        $("#editmode input[type='submit']").attr("disabled", true);
     }
   };
 
