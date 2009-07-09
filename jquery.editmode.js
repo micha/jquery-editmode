@@ -6,6 +6,7 @@ $(function($) {
   var site    = window.location.hostname;
   var path    = window.location.pathname;
   var s3url   = "http://"+site+".s3.amazonaws.com/";
+  var s3key   = path.replace(/^\/*/, "");
   var redir   = "https://my.simplemiami.com/"+site+"/?page="+path;
 
   for (var i=0; i<search.length; i++) {
@@ -64,7 +65,7 @@ $(function($) {
                 .append(hidden("policy").val(q.pol))
                 .append(hidden("signature").val(q.sig))
                 .append(hidden("acl").val("public-read"))
-                .append(hidden("key").val(path))
+                .append(hidden("key").val(s3key))
                 .append(hidden("success_action_redirect").val(redir))
                 .append(hidden("Content-Type").val("text/html"))
                 .append(hidden("file").val("hello world!"))
