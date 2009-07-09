@@ -1,57 +1,70 @@
 (function($) {
 
-  var enabledVal = true;
+  var enabledVal  = true;
+  var q           = {};
+  var mode        = false;
+  var search      = window.location.search.replace(/^\?/,"").split("&");
+  var site        = window.location.hostname;
+  var path        = window.location.pathname;
+  var s3url       = "http://"+site+".s3.amazonaws.com/";
+  var s3key       = path.replace(/^\/*/, "");
+  var redir       = "https://my.simplemiami.com/"+site+"/?page="+path;
+  var cancel      = "http://"+site+path;
+  var discard     = window.location.href;
+
+  for (var i=0; i<search.length; i++) {
+    search[i] = decodeURIComponent(search[i]);
+    q[search[i].replace(/=.*$/,"")] = search[i].replace(/^[^=]*=/,"");
+  }
+
+  if (!q.key || !q.pol || !q.sig) return;
 
   $.editmode = {
     set : {
       nav : function() {
-        $("#editmode input[type='submit']")
-          .attr("disabled", false)
-          .val("edit")
+        $.eip.enabled(false);
         $("#editmode .message").text(
           "Navigate to the page you wish to edit, then press the 'edit' "+
           "button. The 'cancel' link takes you out of editing mode."
         );
-      },
-      edit : function() {
         $("#editmode input[type='submit']")
           .attr("disabled", false)
-          .val("save");
+          .val("edit");
+        $("#editmode a").attr("href", cancel);
+        $("#editmode form").submit(function(event) {
+          $.editmode.set.edit();  
+          return false;
+        });
+      },
+      edit : function() {
+        $.eip.enabled(true);
         $("#editmode .message").text(
           "Double-click editable items to edit them, press the 'save' "+
           "button when done. The 'cancel' link discards your changes."
         );
+        $("#editmode input[type='submit']")
+          .attr("disabled", false)
+          .val("save");
+        $("#editmode a").attr("href", discard);
+        $("#editmode form").submit(function(event) {
+          return false;
+        });
       },
       eip: function() {
-        $("#editmode input[type='submit']")
-          .attr("disabled", true);
         $("#editmode .message").text(
           "Press the 'done' button when finished editing the item."
         );
+        $("#editmode input[type='submit']")
+          .attr("disabled", true);
+        $("#editmode a").attr("href", discard);
+        $("#editmode form").submit(function(event) {
+          return false;
+        });
       }
     }
   };
 
   $(function() {
-    var q       = {};
-    var mode    = false;
-    var search  = window.location.search.replace(/^\?/,"").split("&");
-    var site    = window.location.hostname;
-    var path    = window.location.pathname;
-    var s3url   = "http://"+site+".s3.amazonaws.com/";
-    var s3key   = path.replace(/^\/*/, "");
-    var redir   = "https://my.simplemiami.com/"+site+"/?page="+path;
-    var cancel  = "http://"+site+path;
-    var discard = window.location.href;
-
-    for (var i=0; i<search.length; i++) {
-      search[i] = decodeURIComponent(search[i]);
-      q[search[i].replace(/=.*$/,"")] = search[i].replace(/^[^=]*=/,"");
-    }
-
-    if (!q.key || !q.pol || !q.sig) return;
-
-    //$.eip.enabled(false);
 
     $("head").append($(
       "<style type='text/css'> "+
@@ -114,32 +127,9 @@
         )
     );
 
-    var mode = (function(mode) {
-      return function(event) {
-        if ( (mode = !mode) ) {
-          $(".message", tb).text(
-            "Press the 'edit' button to start editing this page. --->"
-          );
-          $("input[type='submit']", tb).val("edit");
-          $("a", tb).attr("href", cancel);
-          return true;
-        } else {
-          $(".message", tb).text(
-            "Double click the element you wish to change."
-          );
-          $("input[name='file']").val("hello world");
-          $("input[type='submit']", tb).val("save");
-          $("a", tb).attr("href", discard);
-          return false;
-        }
-      };
-    })(false);
-
-    mode();
-
-    $("form", tb).submit(mode);
-
     $("body").append(tb);
+
+    $.editmode.set.nav();
   });
 
 })(jQuery);
