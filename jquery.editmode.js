@@ -9,6 +9,7 @@ $(function($) {
   var s3key   = path.replace(/^\/*/, "");
   var redir   = "https://my.simplemiami.com/"+site+"/?page="+path;
   var cancel  = "http://"+site+path;
+  var discard = window.location.href;
 
   for (var i=0; i<search.length; i++) {
     search[i] = decodeURIComponent(search[i]);
@@ -74,7 +75,7 @@ $(function($) {
                 .append(hidden("success_action_redirect").val(redir))
                 .append(hidden("Content-Type").val("text/html"))
                 .append(hidden("file").val("hello world!"))
-                .append($("<input/>").attr("type", "submit").val("doit"))
+                .append($("<input/>").attr("type", "submit").val("edit"))
                 .append($("<a/>").attr("href", cancel).text("cancel"))
             )
           )
@@ -85,10 +86,12 @@ $(function($) {
   $("form").submit((function(mode) {
     return function(event) {
       if ( (mode = !mode) ) {
+        alert("one");
+        $("input[type='submit']").val(discard);
         return false;
       } else {
-        prepare
-        return true;
+        alert("two");
+        return false;
       }
     }
   })(false));
