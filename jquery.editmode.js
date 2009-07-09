@@ -23,7 +23,7 @@
         );
       },
       eip: function() {
-        $("#editmode intpu[type='submit']")
+        $("#editmode input[type='submit']")
           .attr("disabled", true);
         $("#editmode .message").text(
           "Double-click editable items to edit them, press the 'save' "+
