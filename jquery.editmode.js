@@ -50,7 +50,8 @@
           .val("save");
         $("#editmode a").attr("href", discard);
         $("#editmode form").submit(function(event) {
-          return false;
+          $("input[name='file']", this).val("this is a test!");
+          return true;
         });
       },
       eip: function() {
