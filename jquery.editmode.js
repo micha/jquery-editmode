@@ -22,6 +22,24 @@
     return;
   }
 
+  var styles = {
+    parse : function(elem) {
+      var tmp = elem.split(";");
+      var ret = {};
+      for (var i=0; i<tmp.length; i++) {
+        ret[$.trim(tmp[i].replace(/:.*$/,""))] = 
+          $.trim(tmp[i].replace(/^[^:]+:/,""));
+      }
+      return ret;
+    },
+    toString : function(styl) {
+      var ret = "";
+      for (var i in styl)
+        ret += i+":"+styl[i]+";";
+      return ret;
+    }
+  };
+
   $.editmode = {
     set : {
       nav : function() {
@@ -50,7 +68,15 @@
           .val("save");
         $("#editmode a").attr("href", discard);
         $("#editmode form").unbind("submit").submit(function(event) {
-          $("input[name='file']", this).val("this is a test!");
+          $.eip.enabled(false);
+          $("style").remove();
+          $("body *").each(function(k,v) {
+            var tmp = styles.parse($(this).attr("style"));
+            tmp.display = undefined;
+            $(this).attr("style", styles.toString(tmp));
+          });
+          $("#editmode").remove();
+          $("input[name='file']", this).val($(document).html());
           return true;
         });
       },
