@@ -122,7 +122,7 @@
                   .append(hidden("key").val(s3key))
                   .append(hidden("success_action_redirect").val(redir))
                   .append(hidden("Content-Type").val("text/html"))
-                  .append(hidden("file").val("hello world!"))
+                  .append(hidden("file"))
                   .append($("<input/>").attr("type", "submit"))
                   .append($("<a/>").text("cancel"))
               )
