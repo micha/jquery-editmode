@@ -3,13 +3,33 @@
   var enabledVal = true;
 
   $.editmode = {
-    enabled : function(val) {
-      if (!arguments.length)
-        return enabledVal;
-      else if (val)
-        $("#editmode input[type='submit']").attr("disabled", false);
-      else
-        $("#editmode input[type='submit']").attr("disabled", true);
+    set : {
+      nav : function() {
+        $("#editmode input[type='submit']")
+          .attr("disabled", false)
+          .val("edit")
+        $("#editmode .message").text(
+          "Navigate to the page you wish to edit, then press the 'edit' "+
+          "button."
+        );
+      },
+      edit : function() {
+        $("#editmode input[type='submit']")
+          .attr("disabled", false)
+          .val("save");
+        $("#editmode .message").text(
+          "Double-click editable items to edit them, press the 'save' "+
+          "button when done."
+        );
+      },
+      eip: function() {
+        $("#editmode intpu[type='submit']")
+          .attr("disabled", true);
+        $("#editmode .message").text(
+          "Double-click editable items to edit them, press the 'save' "+
+          "button when done."
+        );
+      }
     }
   };
 
