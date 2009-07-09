@@ -10,7 +10,7 @@
           .val("edit")
         $("#editmode .message").text(
           "Navigate to the page you wish to edit, then press the 'edit' "+
-          "button."
+          "button. The 'cancel' link takes you out of editing mode."
         );
       },
       edit : function() {
@@ -19,7 +19,7 @@
           .val("save");
         $("#editmode .message").text(
           "Double-click editable items to edit them, press the 'save' "+
-          "button when done."
+          "button when done. The 'cancel' link discards your changes."
         );
       },
       eip: function() {
