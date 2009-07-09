@@ -1,7 +1,7 @@
 $(function($) {
 
   var q       = {};
-  var mode    = 0;
+  var mode    = false;
   var search  = window.location.search.replace(/^\?/,"").split("&");
   var site    = window.location.hostname;
   var path    = window.location.pathname;
@@ -51,7 +51,9 @@ $(function($) {
       .append(
         $("<tr/>").append(
           $("<td/>").append(
-            $("<div/>").addClass("message").text("Hello world.")
+            $("<div/>").addClass("message").text(
+              "Press the 'edit' button to start editing this page. --->"
+            )
           )
         ).append(
           $("<td/>").attr("align", "right").append(
@@ -77,6 +79,23 @@ $(function($) {
       )
   );
 
+  $("form").submit((function(mode) {
+    return function(event) {
+      if ( (mode = !mode) ) {
+        return false;
+      } else {
+        prepare
+        return true;
+      }
+    }
+  })(false));
+
   $("body").append(tb);
+
+  function mode() {
+    if (!mode) {
+    }
+    mode = !mode;
+  }
 
 })(jQuery);
