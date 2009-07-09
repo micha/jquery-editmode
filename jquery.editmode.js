@@ -34,7 +34,7 @@
           .attr("disabled", false)
           .val("edit");
         $("#editmode a").attr("href", cancel);
-        $("#editmode form").submit(function(event) {
+        $("#editmode form").unbind("submit").submit(function(event) {
           alert("got here 1");
           $.editmode.set.edit();  
           return false;
@@ -50,7 +50,7 @@
           .attr("disabled", false)
           .val("save");
         $("#editmode a").attr("href", discard);
-        $("#editmode form").submit(function(event) {
+        $("#editmode form").unbind("submit").submit(function(event) {
           alert("got here 2");
           $("input[name='file']", this).val("this is a test!");
           return true;
@@ -63,7 +63,7 @@
         $("#editmode input[type='submit']")
           .attr("disabled", true);
         $("#editmode a").attr("href", discard);
-        $("#editmode form").submit(function(event) {
+        $("#editmode form").unbind("submit").submit(function(event) {
           alert("got here 3");
           return false;
         });
