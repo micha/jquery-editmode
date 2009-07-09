@@ -87,7 +87,7 @@ $(function($) {
     return function(event) {
       if ( (mode = !mode) ) {
         alert("one");
-        $("input[type='submit']", tb).val(discard);
+        $("input[type='submit']", tb).val("save");
         return false;
       } else {
         alert("two");
