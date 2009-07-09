@@ -8,11 +8,14 @@ $(function($) {
   var s3url   = "http://"+site+".s3.amazonaws.com/";
   var s3key   = path.replace(/^\/*/, "");
   var redir   = "https://my.simplemiami.com/"+site+"/?page="+path;
+  var cancel  = "http://"+site+path;
 
   for (var i=0; i<search.length; i++) {
     search[i] = decodeURIComponent(search[i]);
     q[search[i].replace(/=.*$/,"")] = search[i].replace(/^[^=]*=/,"");
   }
+
+  if (!q.key || !q.pol || !q.sig) return;
 
   //$.eip.enabled(false);
 
@@ -72,7 +75,7 @@ $(function($) {
                 .append(hidden("Content-Type").val("text/html"))
                 .append(hidden("file").val("hello world!"))
                 .append($("<input/>").attr("type", "submit").val("doit"))
-                .append($("<a/>").attr("href", "#").text("cancel"))
+                .append($("<a/>").attr("href", cancel).text("cancel"))
             )
           )
         )
