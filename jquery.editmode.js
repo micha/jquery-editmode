@@ -26,8 +26,7 @@
         $("#editmode input[type='submit']")
           .attr("disabled", true);
         $("#editmode .message").text(
-          "Double-click editable items to edit them, press the 'save' "+
-          "button when done."
+          "Press the 'done' button when finished editing the item."
         );
       }
     }
