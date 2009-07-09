@@ -76,7 +76,8 @@
             $(this).attr("style", styles.toString(tmp));
           });
           $("#editmode").remove();
-          $("input[name='file']", this).val($(document).html());
+          alert($("html").html());
+          //$("input[name='file']", this).val($(document).html());
           return true;
         });
       },
