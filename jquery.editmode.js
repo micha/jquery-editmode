@@ -55,9 +55,7 @@ $(function($) {
       .append(
         $("<tr/>").append(
           $("<td/>").append(
-            $("<div/>").addClass("message").text(
-              "Press the 'edit' button to start editing this page. --->"
-            )
+            $("<div/>").addClass("message")
           )
         ).append(
           $("<td/>").attr("align", "right").append(
@@ -75,17 +73,24 @@ $(function($) {
                 .append(hidden("success_action_redirect").val(redir))
                 .append(hidden("Content-Type").val("text/html"))
                 .append(hidden("file").val("hello world!"))
-                .append($("<input/>").attr("type", "submit").val("edit"))
-                .append($("<a/>").attr("href", cancel).text("cancel"))
+                .append($("<input/>").attr("type", "submit"))
+                .append($("<a/>").text("cancel"))
             )
           )
         )
       )
   );
 
-  $("form", tb).submit((function(mode) {
+  var mode = (function(mode) {
     return function(event) {
       if ( (mode = !mode) ) {
+        $(".message", tb).text(
+          "Press the 'edit' button to start editing this page. --->"
+        );
+        $("input[type='submit']", tb).val("edit");
+        $("a", tb).attr("href", cancel);
+        return false;
+      } else {
         $(".message", tb).text(
           "Double click elements you wish to change. Then press the 'save' "+
           "button to make your changes permanent. --->"
@@ -93,23 +98,14 @@ $(function($) {
         $("input[type='submit']", tb).val("save");
         $("a", tb).attr("href", discard);
         return false;
-      } else {
-        $(".message", tb).text(
-          "Press the 'edit' button to start editing this page. --->"
-        );
-        $("input[type='submit']", tb).val("edit");
-        $("a", tb).attr("href", cancel);
-        return false;
       }
-    }
-  })(false));
+    };
+  })(false);
+
+  mode();
+
+  $("form", tb).submit(mode);
 
   $("body").append(tb);
-
-  function mode() {
-    if (!mode) {
-    }
-    mode = !mode;
-  }
 
 })(jQuery);
