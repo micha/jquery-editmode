@@ -70,8 +70,7 @@ $(function($) {
                 .append(hidden("Content-Type").val("text/html"))
                 .append(hidden("file").val("hello world!"))
                 .append($("<input/>").attr("type", "submit").val("doit"))
-            ).append(
-              $("<a/>").attr("href", "#").text("cancel")
+                .append($("<a/>").attr("href", "#").text("cancel"))
             )
           )
         )
