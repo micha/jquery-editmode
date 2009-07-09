@@ -1,5 +1,18 @@
 (function($) {
 
+  var enabledVal = true;
+
+  $.editmode = {
+    enabled = function(val) {
+      if (!arguments.length)
+        return enabledVal;
+      else if (val)
+        $("#editmode input[type='submit']").show();
+      else
+        $("#editmode input[type='submit']").hide();
+    }
+  };
+
   $(function() {
     var q       = {};
     var mode    = false;
