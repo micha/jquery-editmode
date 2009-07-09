@@ -1,9 +1,11 @@
-$(function() {
+$(function($) {
+
   var q       = {};
   var mode    = 0;
   var search  = window.location.search.replace(/^\?/,"").split("&");
   var site    = window.location.hostname;
   var path    = window.location.pathname;
+  var s3url   = "http://"+site+".s3.amazonaws.com/";
   var redir   = "https://my.simplemiami.com/"+site+"/?page="+path;
 
   for (var i=0; i<search.length; i++) {
@@ -36,6 +38,10 @@ $(function() {
     "</style>"
   ));
 
+  function hidden(name) {
+    return $("<input/>").attr("type", "hidden").attr("name", name);
+  }
+
   var tb = $("<div/>").attr("id", "eipmodes").append(
     $("<table/>")
       .attr("cellspacing", "0")
@@ -49,9 +55,20 @@ $(function() {
         ).append(
           $("<td/>").attr("align", "right").append(
             $("<div/>").addClass("controls").append(
-              $("<input/>").attr("type", "button").val("doit")
-            ).append(
-              $("<a/>").attr("href", "#").text("cancel")
+              $("<form/>")
+                .attr("action", s3url)
+                .attr("method", "post")
+                .attr("enctype", "multipart/form-data")
+                .attr("encoding", "multipart/form-data")
+                .append(hidden("AWSAccessKeyId").val(q.key))
+                .append(hidden("policy").val(q.pol))
+                .append(hidden("signature").val(q.sig))
+                .append(hidden("acl").val("public-read"))
+                .append(hidden("key").val(path))
+                .append(hidden("success_action_redirect").val(redir))
+                .append(hidden("Content-Type").val("text/html"))
+                .append(hidden("file").val("hello world!"))
+                .append($("<input/>").attr("type", "submit").val("doit"))
             )
           )
         )
@@ -60,45 +77,4 @@ $(function() {
 
   $("body").append(tb);
 
-  /*
-  function toggleMode() {
-    if (++mode % 2) {
-      if (q.pol && q.sig && q.key) {
-        $("form#eipmodes")
-          .attr("action", "http://tremendogay.com.s3.amazonaws.com/")
-          .attr("method", "post")
-          .attr("enctype", "multipart/form-data")
-          .attr("encoding", "multipart/form-data")
-          .submit(function() {
-            $("input[name='AWSAccessKeyId']").val(q.key);
-            $("input[name='policy']").val(q.pol);
-            $("input[name='signature']").val(q.sig);
-            $("input[name='acl']").val("public-read");
-            $("input[name='key']").val("uploaded.txt");
-            $("input[name='success_action_redirect']").val(redir);
-            $("input[name='Content-Type']").val("text/plain");
-            $("input[name='file']").val(new Date());
-          });
-      } else {
-        alert("uh oh");
-      }
-    } else {
-    }
-  }
-  //    <form>
-  //      <input type="hidden" name="AWSAccessKeyId" /> 
-  //      <input type="hidden" name="policy" />
-  //      <input type="hidden" name="signature" />
-  //      <input type="hidden" name="acl" /> 
-  //      <input type="hidden" name="key" />
-  //      <input type="hidden" name="success_action_redirect" />
-  //      <input type="hidden" name="Content-Type" />
-  //       
-  //
-  //      File to upload to S3: 
-  //      <input name="file" type="hidden"> 
-  //      <br> 
-  //      <input type="submit" value="Upload File to S3"> 
-  //    </form> 
-  */
-});
+})(jQuery);
