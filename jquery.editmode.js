@@ -36,7 +36,7 @@
 
     $("head").append($(
       "<style type='text/css'> "+
-        "div#eipmodes { "+
+        "div#editmode { "+
           "position: fixed; "+
           "bottom: 0px; "+
           "left: 0px; "+
@@ -47,10 +47,10 @@
           "opacity: 0.75; "+
           "filter: alpha(opacity = 75); "+
         "} "+
-        "div#eipmodes .message, div#eipmodes .controls { "+
+        "div#editmode .message, div#editmode .controls { "+
           "padding: 7px 10px; "+
         "} "+
-        "div#eipmodes a { "+
+        "div#editmode a { "+
           "color: red; "+
           "margin-left: 10px; "+
         "} "+
@@ -61,7 +61,7 @@
       return $("<input/>").attr("type", "hidden").attr("name", name);
     }
 
-    var tb = $("<div/>").attr("id", "eipmodes").append(
+    var tb = $("<div/>").attr("id", "editmode").append(
       $("<table/>")
         .attr("cellspacing", "0")
         .attr("cellpadding", "0")
