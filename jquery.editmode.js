@@ -17,7 +17,10 @@
     q[search[i].replace(/=.*$/,"")] = search[i].replace(/^[^=]*=/,"");
   }
 
-  if (!q.key || !q.pol || !q.sig) return;
+  if (!q.key || !q.pol || !q.sig) {
+    $.eip.enabled(false);
+    return;
+  }
 
   $.editmode = {
     set : {
