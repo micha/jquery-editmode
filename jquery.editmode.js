@@ -89,7 +89,7 @@ $(function($) {
         );
         $("input[type='submit']", tb).val("edit");
         $("a", tb).attr("href", cancel);
-        return false;
+        return true;
       } else {
         $(".message", tb).text(
           "Double click elements you wish to change. Then press the 'save' "+
@@ -98,7 +98,7 @@ $(function($) {
         $("input[name='file']").val("hello world");
         $("input[type='submit']", tb).val("save");
         $("a", tb).attr("href", discard);
-        return true;
+        return false;
       }
     };
   })(false);
