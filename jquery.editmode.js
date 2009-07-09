@@ -106,8 +106,7 @@
           return true;
         } else {
           $(".message", tb).text(
-            "Double click elements you wish to change. Then press the 'save' "+
-            "button to make your changes permanent. --->"
+            "Double click the element you wish to change."
           );
           $("input[name='file']").val("hello world");
           $("input[type='submit']", tb).val("save");
