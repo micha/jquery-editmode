@@ -3,7 +3,7 @@
   var enabledVal = true;
 
   $.editmode = {
-    enabled = function(val) {
+    enabled : function(val) {
       if (!arguments.length)
         return enabledVal;
       else if (val)
