@@ -83,11 +83,11 @@ $(function($) {
       )
   );
 
-  $("form").submit((function(mode) {
+  $("form", tb).submit((function(mode) {
     return function(event) {
       if ( (mode = !mode) ) {
         alert("one");
-        $("input[type='submit']").val(discard);
+        $("input[type='submit']", tb).val(discard);
         return false;
       } else {
         alert("two");
