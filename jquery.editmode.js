@@ -11,7 +11,7 @@ $(function() {
     q[search[i].replace(/=.*$/,"")] = search[i].replace(/^[^=]*=/,"");
   }
 
-  $.eip.enabled(false);
+  //$.eip.enabled(false);
 
   $("head").append($(
     "<style type='text/css'> "+
