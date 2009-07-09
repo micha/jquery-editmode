@@ -86,19 +86,19 @@ $(function($) {
   $("form", tb).submit((function(mode) {
     return function(event) {
       if ( (mode = !mode) ) {
-        alert("one");
         $(".message", tb).text(
           "Double click elements you wish to change. Then press the 'save' "+
-          "button to make your changes permanent."
+          "button to make your changes permanent. --->"
         );
         $("input[type='submit']", tb).val("save");
+        $("a", tb).attr("href", discard);
         return false;
       } else {
-        alert("two");
         $(".message", tb).text(
           "Press the 'edit' button to start editing this page. --->"
         );
         $("input[type='submit']", tb).val("edit");
+        $("a", tb).attr("href", cancel);
         return false;
       }
     }
