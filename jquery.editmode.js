@@ -78,6 +78,7 @@
             $(this).attr("style", styles.toString(tmp));
           });
           $("#editmode").remove();
+          $("body").siblings().not($("head")).remove();
           $("input[name='file']", this).val(
             "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\" "+
                     "\"http://www.w3.org/TR/html4/strict.dtd\">\n"+
