@@ -79,6 +79,8 @@
           //var n0 = $("#editmode");
           //var n1 = $("body").siblings().not($("head"));
           $("style").remove();
+          $("body").siblings().not($("head")).remove();
+          alert("got here okay");
           var tb = $("#editmode").remove();
           var html =  "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\"\n"+
                       "    \"http://www.w3.org/TR/html4/strict.dtd\">\n"+
