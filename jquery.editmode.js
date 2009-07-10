@@ -76,8 +76,13 @@
             $(this).attr("style", styles.toString(tmp));
           });
           $("#editmode").remove();
-          alert($("html").html());
-          //$("input[name='file']", this).val($(document).html());
+          $("input[name='file']", this).val(
+            "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\" "+
+                    "\"http://www.w3.org/TR/html4/strict.dtd\">\n"+
+            "<html lang=\"en\">\n"+
+              $("html").html()+
+            "</html>"
+          );
           return false;
         });
       },
