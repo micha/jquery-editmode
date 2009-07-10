@@ -68,27 +68,32 @@
         $("#editmode input[type='submit']")
           .attr("disabled", false)
           .val("save");
-        $("#editmode a").attr("href", discard);
+        $("#editmode a").attr("href", "#").click(function() {
+          window.location.reload();
+          return false;
+        });
         $("#editmode form").unbind("submit").submit(function(event) {
           $.eip.enabled(false);
+
+          // jquery stuff modifies the display:xxx inline style sometimes
           $("body *").each(function(k,v) {
             var tmp = styles.parse($(this).attr("style"));
             tmp.display = undefined;
             $(this).attr("style", styles.toString(tmp));
           });
-          //var n0 = $("#editmode");
-          //var n1 = $("body").siblings().not($("head"));
-          $("style").remove();
-          $("body").siblings().not($("head")).remove();
+
+          // temporarily remove the editmode taskbar
           var tb = $("#editmode").remove();
+
           var html =  "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\"\n"+
                       "    \"http://www.w3.org/TR/html4/strict.dtd\">\n"+
                       "<html lang=\"en\">\n"+
                         $("html").html()+"\n"+
                       "</html>";
           $("body").append(tb);
+
           $("input[name='file']", this).val(html);
-          return true;
+          return false;
         });
       },
       eip: function() {
