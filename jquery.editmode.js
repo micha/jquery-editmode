@@ -86,7 +86,8 @@
               $("html").html()+"\n"+
             "</html>"
           );
-          console.log($("input[name='file']", this).val());
+          //console.log($("input[name='file']", this).val());
+          alert("ok got here...");
           return true;
         });
       },
