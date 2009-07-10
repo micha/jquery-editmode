@@ -55,7 +55,6 @@
           .val("edit");
         $("#editmode a").attr("href", cancel);
         $("#editmode form").unbind("submit").submit(function(event) {
-          alert("got here 1");
           $.editmode.set.edit();  
           return false;
         });
@@ -71,19 +70,14 @@
           .val("save");
         $("#editmode a").attr("href", discard);
         $("#editmode form").unbind("submit").submit(function(event) {
-          alert("got here 2");
           $.eip.enabled(false);
-          alert("got here 2a");
           $("style").remove();
-          alert("got here 2b");
           $("body *").each(function(k,v) {
             var tmp = styles.parse($(this).attr("style"));
             tmp.display = undefined;
             $(this).attr("style", styles.toString(tmp));
           });
-          alert("got here 2c");
           $("#editmode").remove();
-          alert("got here 2d");
           $("input[name='file']", this).val(
             "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\" "+
                     "\"http://www.w3.org/TR/html4/strict.dtd\">\n"+
@@ -91,7 +85,7 @@
               $("html").html()+
             "</html>"
           );
-          alert("got here 2e");
+          console.log($("input[name='file']", this).val());
           return false;
         });
       },
@@ -103,7 +97,6 @@
           .attr("disabled", true);
         $("#editmode a").attr("href", discard);
         $("#editmode form").unbind("submit").submit(function(event) {
-          alert("got here 3");
           return false;
         });
       }
