@@ -71,24 +71,23 @@
         $("#editmode a").attr("href", discard);
         $("#editmode form").unbind("submit").submit(function(event) {
           $.eip.enabled(false);
-          $("style").remove();
           $("body *").each(function(k,v) {
             var tmp = styles.parse($(this).attr("style"));
             tmp.display = undefined;
             $(this).attr("style", styles.toString(tmp));
           });
-          $("#editmode").remove();
-          $("body").siblings().not($("head")).remove();
+          var n0 = $("#editmode");
+          var n1 = $("body").siblings().not($("head"));
+          var n2 = $("style");
           $("input[name='file']", this).val(
             "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\" "+
                     "\"http://www.w3.org/TR/html4/strict.dtd\">\n"+
             "<html lang=\"en\">\n"+
-              $("html").html()+"\n"+
+              $("html").not(n0).not(n1).not(n2).html()+"\n"+
             "</html>"
           );
-          //console.log($("input[name='file']", this).val());
-          alert("ok got here...");
-          return true;
+          console.log($("input[name='file']", this).val());
+          return false;
         });
       },
       eip: function() {
