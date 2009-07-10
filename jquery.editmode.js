@@ -78,7 +78,7 @@
           $("#editmode").remove();
           alert($("html").html());
           //$("input[name='file']", this).val($(document).html());
-          return true;
+          return false;
         });
       },
       eip: function() {
