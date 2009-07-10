@@ -79,6 +79,9 @@
           //var n0 = $("#editmode");
           //var n1 = $("body").siblings().not($("head"));
           $("style").remove();
+          var tb = $("#editmode").remove();
+          $("body").append(tb);
+          /*
           $("input[name='file']", this).val(
             "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\" "+
                     "\"http://www.w3.org/TR/html4/strict.dtd\">\n"+
@@ -87,6 +90,7 @@
             "</html>"
           );
           console.log($("input[name='file']", this).val());
+          */
           return true;
         });
       },
@@ -167,7 +171,7 @@
         )
     );
 
-    $("body").after(tb);
+    $("body").append(tb);
 
     $.editmode.set.nav();
   });
