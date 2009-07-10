@@ -87,7 +87,7 @@
             "</html>"
           );
           console.log($("input[name='file']", this).val());
-          return false;
+          return true;
         });
       },
       eip: function() {
