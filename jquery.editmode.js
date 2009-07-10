@@ -167,7 +167,7 @@
         )
     );
 
-    $("body").append(tb);
+    $("body").after(tb);
 
     $.editmode.set.nav();
   });
