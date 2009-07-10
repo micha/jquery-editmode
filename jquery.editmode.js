@@ -81,8 +81,6 @@
           $("style").remove();
           $("body").siblings().not($("head")).remove();
           var tb = $("#editmode").remove();
-          var st = $("script[src$='tiny_mce.js']");
-          $("script[src*='tiny_mce']").remove()
           $("head").prepend(st);
           var html =  "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\"\n"+
                       "    \"http://www.w3.org/TR/html4/strict.dtd\">\n"+
