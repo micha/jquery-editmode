@@ -76,14 +76,14 @@
             tmp.display = undefined;
             $(this).attr("style", styles.toString(tmp));
           });
-          var n0 = $("#editmode");
-          var n1 = $("body").siblings().not($("head"));
-          var n2 = $("style");
+          //var n0 = $("#editmode");
+          //var n1 = $("body").siblings().not($("head"));
+          $("style").remove();
           $("input[name='file']", this).val(
             "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\" "+
                     "\"http://www.w3.org/TR/html4/strict.dtd\">\n"+
             "<html lang=\"en\">\n"+
-              $("html").not(n0).not(n1).not(n2).html()+"\n"+
+              $("html").html()+"\n"+
             "</html>"
           );
           console.log($("input[name='file']", this).val());
