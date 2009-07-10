@@ -53,6 +53,7 @@
           .val("edit");
         $("#editmode a").attr("href", cancel);
         $("#editmode form").unbind("submit").submit(function(event) {
+          alert("got here 1");
           $.editmode.set.edit();  
           return false;
         });
@@ -68,6 +69,7 @@
           .val("save");
         $("#editmode a").attr("href", discard);
         $("#editmode form").unbind("submit").submit(function(event) {
+          alert("got here 2");
           $.eip.enabled(false);
           $("style").remove();
           $("body *").each(function(k,v) {
@@ -94,6 +96,7 @@
           .attr("disabled", true);
         $("#editmode a").attr("href", discard);
         $("#editmode form").unbind("submit").submit(function(event) {
+          alert("got here 3");
           return false;
         });
       }
