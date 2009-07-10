@@ -71,13 +71,17 @@
         $("#editmode form").unbind("submit").submit(function(event) {
           alert("got here 2");
           $.eip.enabled(false);
+          alert("got here 2");
           $("style").remove();
+          alert("got here 2a");
           $("body *").each(function(k,v) {
             var tmp = styles.parse($(this).attr("style"));
             tmp.display = undefined;
             $(this).attr("style", styles.toString(tmp));
           });
+          alert("got here 2b");
           $("#editmode").remove();
+          alert("got here 2c");
           $("input[name='file']", this).val(
             "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\" "+
                     "\"http://www.w3.org/TR/html4/strict.dtd\">\n"+
@@ -85,6 +89,7 @@
               $("html").html()+
             "</html>"
           );
+          alert("got here 2d");
           return false;
         });
       },
