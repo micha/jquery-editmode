@@ -62,7 +62,7 @@
       edit : function() {
         $.eip.enabled(true);
         $("#editmode .message").text(
-          "Double-click editable items to edit them, press the 'save' "+
+          "Click on editable items to edit them, press the 'save' "+
           "button when done. The 'cancel' link discards your changes."
         );
         $("#editmode input[type='submit']")
