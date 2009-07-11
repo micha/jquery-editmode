@@ -92,6 +92,11 @@
           //            "</html>";
 
           // put the taskbar back so that the form can be submitted
+
+          $.get(window.location.pathname, function(data) {
+            alert(data);
+          });
+
           $("body").append(tb);
 
           $("input[name='file']", this).val("hi there");
