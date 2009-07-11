@@ -96,7 +96,10 @@
           $.get(window.location.pathname, function(data) {
               console.log(
                 data
-                  .replace(/<body(>|\s+[^>]+>)(.|\n)*<\/body>/, "<body>\n</body>")
+                  .replace(
+                    /<body(>|\s+[^>]+>)(.|\n)*<\/body>/, 
+                    "<body>\n"+$("body").html()+"\n</body>"
+                  )
               );
           });
 
