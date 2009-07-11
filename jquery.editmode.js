@@ -189,6 +189,13 @@
 
     $("body").append(tb);
 
+    $.eip.init({
+      "background-image" : "url('img/stripes.gif') !important",
+      "opacity" : "0.33",
+      "filter" : "alpha(opacity = 33)",
+      "cursor" : "pointer"
+    });
+
     $.editmode.set.nav();
   });
 
