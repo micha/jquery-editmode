@@ -94,7 +94,9 @@
           // put the taskbar back so that the form can be submitted
 
           $.get(window.location.pathname, function(data) {
-              console.log(data.replace(/<body(\s+[^>]+>|>).*<\/body>/, "===="));
+              console.log(
+                data.replace(/<body>).*<\/body>/m, "====")
+              );
           });
 
           $("body").append(tb);
