@@ -2,7 +2,6 @@
 
   var enabledVal  = true;
   var q           = {};
-  var mode        = false;
   var search      = window.location.search.replace(/^\?/,"").split("&");
   var site        = window.location.hostname;
   var path        = window.location.pathname;
