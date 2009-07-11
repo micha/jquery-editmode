@@ -93,23 +93,22 @@
 
           // put the taskbar back so that the form can be submitted
 
-          $("input[name='file']", this).val("");
+          $("#editmode input[name='file']").val("");
 
           $.ajax({
             async: false,
             url: window.location.pathname, 
             success: function(data) {
-              $("body").append(tb);
-              $("input[name='file']", this).val(
-                data.replace(
-                  /<body(>|\s+[^>]+>)(.|\n)*<\/body>/, 
-                  "<body>\n"+$("body").html()+"\n</body>"
-                )
+              var newHtml = data.replace(
+                /<body(>|\s+[^>]+>)(.|\n)*<\/body>/, 
+                "<body>\n"+$("body").html()+"\n</body>"
               );
+              $("body").append(tb);
+              $("#editmode input[name='file']").val(newHtml);
             }
           });
 
-          return ($("input[name='file']", this).val().length > 0);
+          return ($("#editmode input[name='file']").val().length > 0);
         });
       },
       eip: function() {
