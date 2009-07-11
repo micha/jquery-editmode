@@ -95,7 +95,7 @@
 
           $.get(window.location.pathname, function(data) {
               console.log(
-                data.replace(/.+/, "====")
+                data.replace(/\n/g, "__CRLF__")
               );
           });
 
