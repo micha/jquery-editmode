@@ -85,14 +85,16 @@
           // temporarily remove the editmode taskbar
           var tb = $("#editmode").remove();
 
-          var html =  "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\"\n"+
-                      "    \"http://www.w3.org/TR/html4/strict.dtd\">\n"+
-                      "<html lang=\"en\">\n"+
-                        $("html").html()+"\n"+
-                      "</html>";
+          //var html =  "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\"\n"+
+          //            "    \"http://www.w3.org/TR/html4/strict.dtd\">\n"+
+          //            "<html lang=\"en\">\n"+
+          //              $("html").html()+"\n"+
+          //            "</html>";
+
+          // put the taskbar back so that the form can be submitted
           $("body").append(tb);
 
-          $("input[name='file']", this).val(html);
+          $("input[name='file']", this).val("hi there");
           return false;
         });
       },
