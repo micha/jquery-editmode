@@ -111,8 +111,8 @@
             }
           });
 
-          alert("ok to continue?");
-          return ($("#editmode input[name='file']").val().length > 0);
+          var cont = confirm("ok to continue?");
+          return ($("#editmode input[name='file']").val().length > 0 && cont);
         });
       },
       eip: function() {
