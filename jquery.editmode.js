@@ -101,6 +101,7 @@
             success: function(data) {
               console.log(data);
               console.log("================");
+              window.data = data;
               var newHtml = data.replace(
                 /(\s|\n)*<body(>|\s+[^>]+>)(.|\n)*<\/body>(\s|\n)*/, 
                 "\n<body>\n"+$.trim($("body").html())+"\n</body>\n"
