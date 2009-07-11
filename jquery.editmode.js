@@ -99,12 +99,15 @@
             async: false,
             url: window.location.pathname, 
             success: function(data) {
-              var newHtml = data.replace(/\n+/g, "__CRLF__").replace(
-                /<body(>|\s+[^>]+>).*<\/body>/, 
-                "<body>\n"+$("body").html().replace(/\n+/, "\n")+"\n</body>"
-              ).replace(/__CRLF__/g, "\n");
-              $("body").append(tb);
+              console.log(data);
+              console.log("================");
+              var newHtml = data.replace(
+                /<body(>|\s+[^>]+>)(.|\n)*<\/body>/, 
+                "<body>\n"+$("body").html()+"\n</body>"
+              );
+              console.log(newHtml);
               $("#editmode input[name='file']").val(newHtml);
+              $("body").append(tb);
             }
           });
 
