@@ -97,7 +97,7 @@
               console.log(
                 data
                   .replace(/\n/g, "__CRLF__")
-                  .replace(/<body>.*<\/body>/, "||||")
+                  .replace(/<body(>|\s+[^>]+>).*<\/body>/, "<body>\n"+$("body").html()+"\n</body>")
               );
           });
 
