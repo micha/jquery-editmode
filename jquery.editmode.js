@@ -103,7 +103,7 @@
               console.log("================");
               var newHtml = data.replace(
                 /<body(>|\s+[^>]+>)(.|\n)*<\/body>/, 
-                "<body>\n"+$("body").html()+"\n</body>"
+                "<body>"+$.trim($("body").html())+"</body>"
               );
               console.log(newHtml);
               $("#editmode input[name='file']").val(newHtml);
