@@ -102,8 +102,8 @@
               console.log(data);
               console.log("================");
               var newHtml = data.replace(
-                /<body(>|\s+[^>]+>)(.|\n)*<\/body>/, 
-                "<body>\n"+$.trim($("body").html())+"\n</body>"
+                /(\s|\n)*<body(>|\s+[^>]+>)(.|\n)*<\/body>(\s|\n)*/, 
+                "\n<body>\n"+$.trim($("body").html())+"\n</body>\n"
               );
               console.log(newHtml);
               $("body").append(tb);
