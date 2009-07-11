@@ -99,21 +99,16 @@
             async: false,
             url: window.location.pathname, 
             success: function(data) {
-              console.log(data);
-              console.log("================");
-              window.data = data;
               var newHtml = data.replace(
                 /\s*<body(>|\s+[^>]+>)(.|\s)*<\/body>\s*/,
                 "\n<body>\n"+$.trim($("body").html())+"\n</body>\n"
               );
-              console.log(newHtml);
               $("body").append(tb);
               $("#editmode input[name='file']").val(newHtml);
             }
           });
 
-          var cont = confirm("ok to continue?");
-          return ($("#editmode input[name='file']").val().length > 0 && cont);
+          return ($("#editmode input[name='file']").val().length > 0);
         });
       },
       eip: function() {
