@@ -93,20 +93,23 @@
 
           // put the taskbar back so that the form can be submitted
 
-          $.get(window.location.pathname, function(data) {
-              console.log(
-                data
-                  .replace(
-                    /<body(>|\s+[^>]+>)(.|\n)*<\/body>/, 
-                    "<body>\n"+$("body").html()+"\n</body>"
-                  )
+          $("input[name='file']", this).val("");
+
+          $.ajax({
+            async: false,
+            url: window.location.pathname, 
+            success: function(data) {
+              $("body").append(tb);
+              $("input[name='file']", this).val(
+                data.replace(
+                  /<body(>|\s+[^>]+>)(.|\n)*<\/body>/, 
+                  "<body>\n"+$("body").html()+"\n</body>"
+                )
               );
+            }
           });
 
-          $("body").append(tb);
-
-          $("input[name='file']", this).val("hi there");
-          return false;
+          return ($("input[name='file']", this).val().length > 0);
         });
       },
       eip: function() {
