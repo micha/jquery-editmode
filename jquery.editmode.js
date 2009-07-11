@@ -103,7 +103,7 @@
               console.log("================");
               window.data = data;
               var newHtml = data.replace(
-                /(\s|\n)*<body(>|\s+[^>]+>)(.|\n)*<\/body>(\s|\n)*/, 
+                /\s*<body(>|\s+[^>]+>)(.|\s)*<\/body>\s*/,
                 "\n<body>\n"+$.trim($("body").html())+"\n</body>\n"
               );
               console.log(newHtml);
