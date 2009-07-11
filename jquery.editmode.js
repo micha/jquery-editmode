@@ -95,7 +95,7 @@
 
           $.get(window.location.pathname, function(data) {
               console.log(
-                data.replace(/<body>.*/m, "====")
+                data.replace(/<body>.*$/m, "====")
               );
           });
 
