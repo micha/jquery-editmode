@@ -78,7 +78,7 @@
           // jquery stuff modifies the display:xxx inline style sometimes
           $("body *").each(function(k,v) {
             var tmp = styles.parse($(this).attr("style"));
-            tmp.display = undefined;
+            delete tmp.display;
             $(this).attr("style", styles.toString(tmp));
           });
 
