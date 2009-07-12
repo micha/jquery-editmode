@@ -130,8 +130,8 @@
           "bottom: 0px; "+
           "left: 0px; "+
           "z-index: 99999 !important; "+
-          "background: black; "+
-          "color: white; "+
+          "background: black !important; "+
+          "color: white !important; "+
           "width: 100%; "+
           "opacity: 0.75; "+
           "filter: alpha(opacity = 75); "+
