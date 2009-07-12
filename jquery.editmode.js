@@ -72,6 +72,7 @@
           return false;
         });
         $("#editmode form").unbind("submit").submit(function(event) {
+          $("#editmode input[type='submit']").attr("disabled", true);
           $.eip.enabled(false);
 
           // jquery stuff modifies the display:xxx inline style sometimes
@@ -111,8 +112,7 @@
         $("#editmode .message").text(
           "Press the 'done' button when finished editing the item."
         );
-        $("#editmode input[type='submit']")
-          .attr("disabled", true);
+        $("#editmode input[type='submit']").attr("disabled", true);
         $("#editmode a").attr("href", discard);
         $("#editmode form").unbind("submit").submit(function(event) {
           return false;
