@@ -78,6 +78,8 @@
           $("body *").each(function(k,v) {
             var tmp = styles.parse($(this).attr("style"));
             delete tmp.display;
+            delete tmp.sizset;
+            delete tmp.sizcache;
             $(this).attr("style", styles.toString(tmp));
           });
 
