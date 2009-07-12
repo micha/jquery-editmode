@@ -89,7 +89,7 @@
           // sizzle css selector engine adds these attributes
           $("body [sizcache], body [sizset]").each(function(k,v) {
             $(this).attr("sizcache", null).attr("sizset", null);
-          }
+          });
 
           // some things (tinyMCE, for example) add scripts to the <body/>
           $("body script").remove();
