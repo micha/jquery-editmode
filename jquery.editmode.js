@@ -60,6 +60,9 @@
       },
       edit : function() {
         $.eip.enabled(true);
+
+        $("a").click(function() { return false; });
+
         $("#editmode .message").text(
           "Click on editable items to edit them, press the 'save' "+
           "button when done. The 'cancel' link discards your changes."
