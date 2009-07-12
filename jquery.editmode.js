@@ -76,15 +76,13 @@
           $.eip.enabled(false);
 
           // jquery stuff modifies the display:xxx inline style sometimes
-          $("body *").each(function(k,v) {
+          $("body [style]").each(function(k,v) {
             var tmp = styles.parse($(this).attr("style"));
             delete tmp.display;
-            delete tmp.sizset;
-            delete tmp.sizcache;
             $(this).attr("style", styles.toString(tmp));
           });
 
-          // some things (tinyMCE) add scripts to the <body/>
+          // some things (tinyMCE, for example) add scripts to the <body/>
           $("body script").remove();
 
           // temporarily remove the editmode taskbar
@@ -98,13 +96,14 @@
             success: function(data) {
               var newHtml = data.replace(
                 /\s*<body(>|\s+[^>]+>)(.|\s)*<\/body>\s*/,
-                "\n<body>\n"+$.trim($("body").html())+"\n</body>\n"
+                "\n<body>\n"+$.htmlClean($("body").html())+"\n</body>\n"
               );
               $("body").append(tb);
               $("#editmode input[name='file']").val(newHtml);
             }
           });
 
+          // suppress form submit if no content
           return ($("#editmode input[name='file']").val().length > 0);
         });
       },
