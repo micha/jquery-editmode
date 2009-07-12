@@ -184,14 +184,17 @@
         )
     );
 
+    alert("got here _1");
     $("body").append(tb);
 
+    alert("got here _2");
     $.eip.init({
       "background-image" : "url('img/stripes.gif') !important",
       "opacity" : "0.33",
       "filter" : "alpha(opacity = 33)",
       "cursor" : "pointer"
     });
+    alert("got here _3");
 
     $.editmode.set.nav();
   });
