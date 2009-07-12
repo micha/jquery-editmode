@@ -37,7 +37,7 @@
       var ret = "";
       for (var i in styl)
         ret += i+":"+styl[i]+";";
-      return ret;
+      return ret.length ? ret : null;
     }
   };
 
@@ -72,7 +72,11 @@
           return false;
         });
         $("#editmode form").unbind("submit").submit(function(event) {
+          // prevent multiple form submissions
           $("#editmode input[type='submit']").attr("disabled", true);
+
+          $("#editmode .message").text("Saving...");
+
           $.eip.enabled(false);
 
           // jquery stuff modifies the display:xxx inline style sometimes
@@ -81,6 +85,11 @@
             delete tmp.display;
             $(this).attr("style", styles.toString(tmp));
           });
+
+          // sizzle css selector engine adds these attributes
+          $("body [sizcache], body [sizset]").each(function(k,v) {
+            $(this).attr("sizcache", null).attr("sizset", null);
+          }
 
           // some things (tinyMCE, for example) add scripts to the <body/>
           $("body script").remove();
@@ -96,7 +105,7 @@
             success: function(data) {
               var newHtml = data.replace(
                 /\s*<body(>|\s+[^>]+>)(.|\s)*<\/body>\s*/,
-                "\n<body>\n"+$.htmlClean($("body").html())+"\n</body>\n"
+                "\n<body>\n"+$.trim($("body").html())+"\n</body>\n"
               );
               $("body").append(tb);
               $("#editmode input[name='file']").val(newHtml);
