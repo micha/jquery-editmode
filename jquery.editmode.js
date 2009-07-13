@@ -198,7 +198,7 @@
     $("body").append(tb);
 
     $.eip.init({
-      "background-image" : "url('img/stripes.gif') !important",
+      "background-image" : "url('http://cf.js.simplemiami.com/js/img/stripes.gif') !important",
       "opacity" : "0.33",
       "filter" : "alpha(opacity = 33)",
       "cursor" : "pointer"
