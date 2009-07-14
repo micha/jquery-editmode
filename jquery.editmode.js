@@ -45,6 +45,7 @@
     set : {
       nav : function() {
         $.eip.enabled(false);
+
         $("#editmode .message").text(
           "Navigate to the page you wish to edit, then press the 'edit' "+
           "button. The 'cancel' link takes you out of editing mode."
