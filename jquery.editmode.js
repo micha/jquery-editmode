@@ -133,6 +133,8 @@
           "width: 100%; "+
           "opacity: 0.75; "+
           "filter: alpha(opacity = 75); "+
+          "margin: 0; "+
+          "padding: 0; "+
         "} "+
         "div#editmode .message, div#editmode .controls { "+
           "padding: 7px 10px; "+
@@ -140,6 +142,7 @@
         "div#editmode a { "+
           "color: red; "+
           "margin-left: 10px; "+
+          "text-decoration: underline; "+
         "} "+
       "</style>"
     ));
