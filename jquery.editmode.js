@@ -1,8 +1,6 @@
 (function($) {
 
   var enabledVal  = true;
-  var q           = {};
-  var search      = window.location.search.replace(/^\?/,"").split("&");
   var site        = window.location.hostname;
   var path        = window.location.pathname;
   var s3url       = "http://"+site+".s3.amazonaws.com/";
@@ -10,16 +8,6 @@
   var redir       = "https://my.simplemiami.com/"+site+"/?page="+path;
   var cancel      = "http://"+site+path;
   var discard     = window.location.href;
-
-  for (var i=0; i<search.length; i++) {
-    search[i] = decodeURIComponent(search[i]);
-    q[search[i].replace(/=.*$/,"")] = search[i].replace(/^[^=]*=/,"");
-  }
-
-  if (!q.key || !q.pol || !q.sig) {
-    $.eip.enabled(false);
-    return;
-  }
 
   var styles = {
     parse : function(elem) {
