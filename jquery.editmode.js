@@ -136,6 +136,10 @@
           "margin: 0; "+
           "padding: 0; "+
         "} "+
+        "div#editmode table { "+
+          "margin: 0; "+
+          "padding: 0; "+
+        "} "+
         "div#editmode .message, div#editmode .controls { "+
           "padding: 7px 10px; "+
         "} "+
