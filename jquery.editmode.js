@@ -29,10 +29,19 @@
     }
   };
 
+  function doClickHref(event) {
+    window.location.assign(this.href + window.location.search);
+    return false;
+  }
+
   $.editmode = {
     set : {
       nav : function() {
         $.eip.enabled(false);
+        $("a").unbind("click").bind("click", function(event) {
+          window.location.assign(this.href + window.location.search);
+          return false;
+        });
 
         $("#editmode .message").text(
           "Navigate to the page you wish to edit, then press the 'edit' "+
@@ -49,6 +58,9 @@
       },
       edit : function() {
         $.eip.enabled(true);
+        $("a").unbind("click").bind("click", function(event) {
+          return false;
+        });
 
         $("#editmode .message").text(
           "Click on editable items to edit them, press the 'save' "+
