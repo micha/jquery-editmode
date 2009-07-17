@@ -34,16 +34,18 @@
     return false;
   }
 
+  function doNoClickHref(event) {
+    return false;
+  }
+
   $.editmode = {
     set : {
       nav : function() {
         $.eip.enabled(false);
         $("a").not($("div#editmode a"))
-          .unbind("click")
-          .bind("click", function(event) {
-            window.location.assign(this.href + window.location.search);
-            return false;
-          });
+          .unbind("click", doClickHref)
+          .unbind("click", doNoClickHref)
+          .bind("click", doClickHref);
 
         $("#editmode .message").text(
           "Navigate to the page you wish to edit, then press the 'edit' "+
@@ -61,10 +63,9 @@
       edit : function() {
         $.eip.enabled(true);
         $("a").not($("div#editmode a"))
-          .unbind("click")
-          .bind("click", function(event) {
-            return false;
-          });
+          .unbind("click", doClickHref)
+          .unbind("click", doNoClickHref)
+          .bind("click", doNoClickHref);
 
         $("#editmode .message").text(
           "Click on editable items to edit them, press the 'save' "+
