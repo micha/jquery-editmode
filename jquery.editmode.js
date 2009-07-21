@@ -23,9 +23,11 @@
     },
     toString : function(styl) {
       var ret = "";
-      for (var i in styl)
-        ret += i+":"+styl[i]+";";
-      return ret.length ? ret : null;
+      for (var i in styl) {
+        if (styl[i].length)
+          ret += i+":"+styl[i]+";";
+      }
+      return ret.length ? ret : undefined;
     }
   };
 
