@@ -117,7 +117,7 @@
             url: window.location.pathname, 
             success: function(data) {
               var newHtml = data.replace(
-                /\s*<body(>|\s+[^>]+>)(.|\s)*<\/body>\s*/,
+                /\s*<body(>|\s+[^>]+>)(.|\s)*<\/body>\s*/i,
                 "\n<body>\n"+$.trim($("body").html())+"\n</body>\n"
               );
               $("body").append(tb);
