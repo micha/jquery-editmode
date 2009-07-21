@@ -92,7 +92,11 @@
           $("body [style]").each(function(k,v) {
             var tmp = styles.parse($(this).attr("style"));
             delete tmp.display;
-            $(this).attr("style", styles.toString(tmp));
+            var tmpstr = styles.toString(tmp);
+            if (tmpstr)
+              $(this).attr("style", tmpstr);
+            else
+              $(this).removeAttr("style");
           });
 
           // sizzle css selector engine adds these attributes
